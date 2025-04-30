@@ -5,6 +5,8 @@ from .database import engine,get_db
 from app.routers import user,post,auth,vote
 from .config import settings
 from fastapi.middleware.cors import CORSMiddleware
+import os
+print(f"Starting FastAPI on port {os.getenv('PORT', 10000)}")
 #models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
 origins = [
@@ -12,7 +14,7 @@ origins = [
     "https://localhost.tiangolo.com",
     "http://localhost",
     "http://localhost:8080",
-    "https://www.google.com",
+    "*",
 ]
 app.add_middleware(
     CORSMiddleware,
